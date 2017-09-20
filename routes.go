@@ -36,4 +36,16 @@ var routes = Routes{
         "/",
         Index,
     },
+    Route{
+        "WillItRainIndex",
+        "GET",
+        "/willitrain",
+        WillItRainIndex,
+    },
+    Route{
+        "WillItRain",
+        "GET",
+        "/willitrain/{when}",
+        WillItRain,
+    },
 }
