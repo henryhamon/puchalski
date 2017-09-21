@@ -14,3 +14,12 @@
 .glide/
 
 config.yml
+
+/vendor
+/tmp
+/db
+*~
+*.swp
+*.swo
+*.db
+*.sqbpro
