@@ -10,10 +10,9 @@ import (
 
 func tempo() {
 
-	id := "59ekgxjori64"
 	localid := "116567"
 
-	url := fmt.Sprintf("http://api.tempo.com/index.php?api_lang=br&localidad=%s&affiliate_id=%s", localid, id)
+	url := fmt.Sprintf("http://api.tempo.com/index.php?api_lang=br&localidad=%s&affiliate_id=%s", localid, Config.Settings.TempoToken)
 
 	// Build the request
 	req, err := http.NewRequest("GET", url, nil)
@@ -41,7 +40,5 @@ func tempo() {
 	// when done reading from it
 	// Defer the closing of the body
 	defer resp.Body.Close()
-
-
 
 }
