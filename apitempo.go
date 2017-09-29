@@ -42,3 +42,45 @@ func tempo() {
 	defer resp.Body.Close()
 
 }
+
+func parserTempo(resp *byte) {
+
+	type Interesting struct {
+		Url string
+	}
+
+	type Forecast struct {
+		DataSequence string `xml:"data_sequence,attr"`
+		Value        string `xml:"value,attr"`
+	}
+
+	type Data struct {
+		Forecasts []Forecast `xml:"forecast"`
+	}
+
+	type Variation struct {
+		Name string `xml:"name"`
+		Icon string `xml:"icon"`
+		Data Data   `xml:"data"`
+	}
+
+	type Location struct {
+		City string `xml:"city,attr"`
+		Interesting
+		Variations []Variation `xml:"var"`
+	}
+
+	type Result struct {
+		XMLName xml.Name `xml:"report"`
+		Loc     Location `xml:"location"`
+	}
+
+	var result = Result{}
+
+	err := xml.Unmarshal([]byte(resp), &result)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return
+	}
+
+}
