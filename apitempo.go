@@ -79,7 +79,7 @@ func parserTempo(resp *byte) {
 
 	err := xml.Unmarshal([]byte(resp), &result)
 	if err != nil {
-		fmt.Printf("error: %v", err)
+		fmt.Printf("error: %result", err)
 		return
 	}
 
