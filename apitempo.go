@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
 )
 
 func tempo() {
@@ -41,9 +41,15 @@ func tempo() {
 	// Defer the closing of the body
 	defer resp.Body.Close()
 
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Do: ", err)
+		return
+	}
+	parserTempo(body)
 }
 
-func parserTempo(resp *byte) {
+func parserTempo(resp []byte) {
 
 	type Interesting struct {
 		Url string
